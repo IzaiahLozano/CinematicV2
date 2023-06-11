@@ -4,7 +4,7 @@ class cinpro extends Phaser.Scene{
     }
 
     preload(){
-        this.load.path = '../assets/';
+        this.load.path = './assets/';
         this.load.image('f', 'F.png');
         this.load.image('l', 'L.png');
         this.load.image('u', 'U.png');
@@ -115,11 +115,6 @@ class cinpro extends Phaser.Scene{
             this.time.delayedCall(3000, () => this.scene.start('menu'));
         });
 
-        // let div = this.add.rectangle(960, 540, 5, 1500, 0xffffff);
-        // div.setAlpha(.1);
-
-        // let mid = this.add.rectangle(960, 540, 1500, 5, 0xffffff);
-        // mid.setAlpha(.1);
 
     }
 }
@@ -133,7 +128,7 @@ class Menu extends Phaser.Scene{
     }
 
     preload(){
-        this.load.path = '../assets/';
+        this.load.path = './assets/';
         this.load.image('men', 'menuscrn.png');
         this.load.image('start', 'Play.png');
         this.load.image('cntl', 'cntrl.png');
@@ -293,20 +288,6 @@ class Menu extends Phaser.Scene{
             });
         });
 
-
-        play.setInteractive();
-        play.on('pointerdown', () => {
-            this.scene.start('gameplay');
-        });
-
-        controls.on('pointerdown', () => {
-            this.scene.start('controls');
-        });
-
-        credits.on('pointerdown', () => {
-            this.scene.start('credits');
-        });
-
         
         //The following twinkling star code was assisted with ChatGPT
 
@@ -362,149 +343,6 @@ class Menu extends Phaser.Scene{
 }
 
 
-class Core extends Phaser.Scene{
-    constructor() {
-        super('gameplay');
-    }
-
-    preload(){
-        this.load.path = '../assets/';
-        this.load.image('wood', 'sign.png');
-
-    }
-
-    create(){
-
-    let sign = this.add.image(
-        960,
-        1000,
-        'wood',
-    )
-    sign.setScale(1.3);
-    //sign.setAlpha(0);
-
-    let mesg1 = this.add.text(
-        800, 
-        540,
-        " Under Construction \n Game will go here",
-        {
-           font: "45px Garamond",
-           color: "#000000"
-        }
-     );
-     mesg1.setOrigin(-0.1, 1.5);
-
-     let mesg2 = this.add.text(
-        800, 
-        540,
-        "https://beanyuan.github.io/FinalProjectCoreGamePlay/",
-        {
-           font: "45px Garamond",
-           color: "#000000"
-        }
-     );
-     mesg2.setOrigin(0.27, 1);
-
-     this.tweens.add({
-        targets: [sign, mesg1, mesg2],
-        alpha: {start: 0, to: 1},
-        duration: 4000,
-        ease: 'Quadratic',
-     });
-
-    }
-
-}
-
-
-class Controls extends Phaser.Scene{
-    constructor() {
-        super('controls');
-    }
-
-    preload(){
-        this.load.path = '../assets/';
-        this.load.image('wood', 'sign.png');
-
-    }
-
-    create(){
-
-    let sign = this.add.image(
-        960,
-        1000,
-        'wood',
-    )
-    sign.setScale(1);
-
-    let mesg = this.add.text(
-        800, 
-        540,
-        "Under Construction \n Controls will go here",
-        {
-           font: "45px Garamond",
-           color: "#000000"
-        }
-     );
-
-
-     this.tweens.add({
-        targets: [sign, mesg],
-        alpha: {start: 0, to: 1},
-        duration: 4000,
-        ease: 'Quadratic',
-     });
-     
-
-    }
-
-
-    
-
-}
-
-class Credit extends Phaser.Scene{
-    constructor() {
-        super('credits');
-    }
-
-    preload(){
-        this.load.path = '../assets/';
-        this.load.image('wood', 'sign.png');
-
-    }
-
-    create(){
-
-    let sign = this.add.image(
-        960,
-        1000,
-        'wood',
-    )
-    sign.setScale(1);
-
-    let mesg = this.add.text(
-        800, 
-        540,
-        "Under Construction \n Credits will go here",
-        {
-           font: "45px Garamond",
-           color: "#000000"
-        }
-     );
-
-
-     this.tweens.add({
-        targets: [sign, mesg],
-        alpha: {start: 0, to: 1},
-        duration: 4000,
-        ease: 'Quadratic',
-     });
-     
-
-    }
-
-}
 
 
 const game = new Phaser.Game({
@@ -514,6 +352,6 @@ const game = new Phaser.Game({
         width: 1920, //960
         height: 1080 //540
     },
-    scene: [cinpro, Menu, Core, Controls, Credit], 
+    scene: [cinpro, Menu], 
     title: "Cinematic Prototype",
 });
